@@ -1,24 +1,18 @@
-library(dplyr)
-library(readr)
+library(tidyverse)
 library(leaflet)
 
-if (!file.exists("data-raw/last_month_quake.csv")) {
-  download.file(
-    "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv",
-    "data-raw/last_month_quake.csv"
-  )
-}
-
+download.file(
+  "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv",
+  "data-raw/last_month_quake.csv")
 
 raw <- read.csv("data-raw/last_month_quake.csv")
 
 last_month_quake <- raw %>% 
   filter(type == "earthquake") %>%
   select(latitude, longitude, mag, depth) %>%
+  mutate(depthtype = ifelse(depth > 33.0, "deep", "shallow")) %>%
   arrange(desc(mag))
 
-shallow_quakes <- last_month_quake %>%
-  filter(depth < 10.0)
 
 
 ggplot(last_month_quake, aes(x = mag)) + geom_histogram()

@@ -1,0 +1,6 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+data-raw/last_month_quake.csv
+QuakeData.Rproj
