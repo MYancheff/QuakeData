@@ -13,7 +13,7 @@ last_month_quake <- raw %>%
   mutate(depthtype = ifelse(depth > 33.0, "deep", "shallow")) %>%
   arrange(desc(mag))
 
-
+shallow_quakes <- filter(last_month_quake, depthtype == "shallow")
 
 ggplot(last_month_quake, aes(x = mag)) + geom_histogram()
 ggplot(shallow_quakes, aes(x = mag)) + geom_histogram()

@@ -1,6 +1,4 @@
-library(dplyr)
-library(tidyr)
-library(readr)
+library(tidyverse)
 
 cent_quake <- read_csv(
   "https://earthquake.usgs.gov/data/centennial/centennial_Y2K.CAT",
